@@ -55,7 +55,16 @@ def main():
     print("Welcome to the db_cats")
     while True:
         print("I Can Help You with Yuor Cats")
-        print("")
+        print("Command:",
+        "Show_all -- показать все записи",
+        "Show_name -- показать всю инфолрмацию по имени",
+        "update_age -- изменить возраст по имени",
+        "add_features -- добавить способность\\описание",
+        "dell_name -- удалить по имени",
+        "dell_all -- удалить всю информацию о котах",
+        "exit\\close -- выход",
+        sep="\n")
+        print()
 
         user_input = input("Enter a command: ")
         command, *args = parse_input(user_input)
