@@ -2,7 +2,7 @@ from pymongo.mongo_client import MongoClient
 from bson.objectid import ObjectId
 from pymongo.server_api import ServerApi
 
-
+#decorator for func try except
 def input_error(func):
     """Decorator for handling input errors."""
 
@@ -16,39 +16,37 @@ def input_error(func):
 
 
 @input_error
-def parse_input(user_input):
-    """Parse user input."""
-    cmd, *args = user_input.split()
-    cmd = cmd.strip().lower()
-    return cmd, *args
-
-
-@input_error
 def show_all(collection):
-    pass
+    return list(collection.find())
 
 
 @input_error
 def show_name(collection,name):
-    pass
+    return collection.find_one({"name": name})
 
 
 @input_error
-def updtate_age(collection,name,age):
-    pass
+def update_age(collection,name,age):
+    collection.update_one({"name": name}, {"$set": {"age": age}})
+    result = collection.find_one({"name": name})
+    return result
 
 
 @input_error
 def add_features(collection,name,features):
-    pass
+    collection.update_one({"name": name}, {"$push": {"features": features}})
+    result = collection.find_one({"name": name})
+    return result
 
 
 @input_error
 def dell_name(collection,name):
-    pass
-
+    collection.delete_one({"name": name})
+    result = collection.find_one({"name": name})
+    return result
 
 @input_error
 def dell_all(collection):
     collection.delete_many({})
+    
     print("DB Clear")

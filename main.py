@@ -1,19 +1,17 @@
 from pymongo.mongo_client import MongoClient
-from bson.objectid import ObjectId
-from pymongo.server_api import ServerApi
 from func_for_db import (
     show_all,
     show_name,
-    updtate_age,
+    update_age,
     add_features,
     dell_name,
     dell_all,
-    parse_input
 )
+
 
 client = MongoClient("mongodb://localhost:27017/")
 db = client.test_db
-collection = db.users
+collection = db.cat
 
 
 # delete all in collection befor start
@@ -54,7 +52,9 @@ def main():
     """Main function"""
     print("Welcome to the db_cats")
     while True:
-        print("I Can Help You with Yuor Cats")
+        print()
+        print("I Can Help You with Your Cats")
+        print()
         print("Command:",
         "Show_all -- показать все записи",
         "Show_name -- показать всю инфолрмацию по имени",
@@ -66,24 +66,26 @@ def main():
         sep="\n")
         print()
 
-        user_input = input("Enter a command: ")
-        command, *args = parse_input(user_input)
+        command = input("Enter a command: ")
 
         if command in ["close", "exit"]:
             print("Good bye!")
             break
-        elif command == "hello":
-            print("How can I help you?")
         elif command == "show_all":
-            pass
+            print(show_all(collection))
         elif command == "show_name":
-            pass
-        elif command == "updtate_age":
-            pass
+            name = input("enter cat name:").lower()
+            print(show_name(collection,name))
+        elif command == "update_age":
+            print("input name and age")
+            name, age = input().split()
+            print(update_age(collection,name.lower(),age))
         elif command == "add_features":
-            pass
+            name, feautures = input("wright name and features:").split()
+            print(add_features(collection,name.lower(),feautures))
         elif command == "dell_name":
-            pass
+            name = input("write name:")
+            print(dell_name(collection,name.lower()))
         elif command == "dell_all":
             dell_all(collection)
         else:
