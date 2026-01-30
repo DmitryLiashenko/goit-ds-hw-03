@@ -1,4 +1,4 @@
-from pymongo.mongo_client import MongoClient
+from pymongo import MongoClient
 from func_for_db import (
     show_all,
     show_name,
