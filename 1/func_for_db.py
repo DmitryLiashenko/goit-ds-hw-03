@@ -48,5 +48,4 @@ def dell_name(collection,name):
 @input_error
 def dell_all(collection):
     collection.delete_many({})
-    
     print("DB Clear")

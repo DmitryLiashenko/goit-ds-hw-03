@@ -20,3 +20,10 @@ def get_client():
     except errors.OperationFailure as e:
         print("Ошибка аутентификации:", e)
         return None
+
+
+# client = get_client()
+# if client:
+#     db = client.my_database
+#     collection = db.my_collection
+# next_page = "https://quotes.toscrape.com/page/2/"
