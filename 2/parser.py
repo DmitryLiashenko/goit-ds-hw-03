@@ -2,7 +2,6 @@ import time
 import json
 import requests
 from bs4 import BeautifulSoup
-from connect_to_db import get_client
 
 
 base_url = "https://quotes.toscrape.com/"
@@ -12,8 +11,6 @@ list_of_authors = []
 
 
 url = "https://quotes.toscrape.com/"
-
-
 while True:
     try:
         response = requests.get(url)
